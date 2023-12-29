@@ -1,0 +1,111 @@
+/*
+    Author     : Vassilyev Denis
+*/
+.MainPanelLeftMenu {
+    -fx-background-color: #ffffff;
+    -fx-border-style: solid;
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: transparent #f2f2f3 transparent transparent;
+    -fx-padding: 15 0 0 0;
+}
+
+/*.MainPanelLeftMenu_Element{*/
+/*    -fx-padding: 0 0 30 0;*/
+/*}*/
+/*.MainPanelTopMenu{*/
+/*    -fx-background-color: #ffffff;*/
+/*}*/
+.MainPanelLeftMenu__Button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #183140;
+}
+
+.MainPanelLeftMenu__Button:hover {
+    -fx-background-color: #bedbdf;
+}
+
+.parent {
+    -fx-background-color: #ffffff;
+}
+
+.sidebar {
+    -fx-background-color: #ffffff;
+}
+
+.box {
+    -fx-background-color: #ffffff;
+
+}
+.baseFieldWithLabel {
+    -fx-border-width: 0 0 0 0;
+    -fx-background-color:  transparent;
+
+}
+.baseLabel{
+    -fx-content-display: right;
+    -fx-background-color: transparent;
+    -fx-border-color: #404040;
+    -fx-border-width: 0px 0px 2px 0px;
+}
+
+.baseLabel__Disabled{
+    -fx-background-color: #e3e3e3!important;
+}
+
+.baseField {
+    -fx-background-color: transparent;
+    -fx-border-color: #404040;
+    -fx-border-width: 0px 0px 2px 0px;
+}
+
+.baseFieldContainer__Field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0px 0px 0px 0px;
+}
+
+.baseFieldContainer__Label {
+    fx-text-fill: #404040;
+}
+
+
+.baseFieldContainer {
+    -fx-background-color: transparent;
+    -fx-border-color: #404040;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-padding: 10 0 10 0;
+}
+
+.baseDarkBorderButton {
+    -fx-background-radius: 0px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #404040;
+    -fx-border-width: 1px 1px 1px 1px;
+    -fx-text-fill: #000000;
+}
+
+.baseDarkButton {
+    -fx-background-color: #404040;
+    -fx-background-radius: 0px;
+    -fx-text-fill: #ffffff;
+}
+
+.baseGreenButton {
+    -fx-background-color: #009688;
+    -fx-background-radius: 0px;
+    -fx-text-fill: #ffffff;
+}
+
+.baseRedBorderButton {
+    -fx-background-radius: 0px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e91e63;
+    -fx-border-width: 1px 1px 1px 1px;
+    -fx-text-fill: #e91e63;
+}
+
+.baseBlueButton {
+    -fx-background-color: #2196f3;
+    -fx-background-radius: 0px;
+    -fx-text-fill: #ffffff;
+}

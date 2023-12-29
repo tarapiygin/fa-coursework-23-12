@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+            stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.fa.gui.controllers.BondsController">
+    <top>
+        <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <items>
+                <HBox alignment="CENTER">
+                    <children>
+                        <HBox alignment="CENTER">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Фильтр:">
+                                    <font>
+                                        <Font name="Peterburg" size="14.0"/>
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets right="15.0"/>
+                                    </HBox.margin>
+                                </Text>
+                                <Label contentDisplay="RIGHT" text="Мин. %">
+                                    <graphic>
+                                        <TextField fx:id="searchCouponRate" prefHeight="25.0" prefWidth="77.0"/>
+                                    </graphic>
+                                    <HBox.margin>
+                                        <Insets right="15.0"/>
+                                    </HBox.margin>
+                                </Label>
+                                <Label contentDisplay="RIGHT" text="Погашение от">
+                                    <graphic>
+                                        <DatePicker fx:id="searchMaturityDate" editable="false" prefHeight="25.0"
+                                                    prefWidth="131.0"/>
+                                    </graphic>
+                                    <HBox.margin>
+                                        <Insets right="15.0"/>
+                                    </HBox.margin>
+                                </Label>
+                                <Button mnemonicParsing="false" onAction="#onSubmitSearchForm" prefWidth="75.0"
+                                        styleClass="baseDarkBorderButton" text="Поиск">
+                                    <HBox.margin>
+                                        <Insets right="30.0"/>
+                                    </HBox.margin>
+                                </Button>
+                                <Button fx:id="resetSearchButton" mnemonicParsing="false" onAction="#onResetSearchForm"
+                                        prefWidth="75.0" styleClass="baseDarkBorderButton" text="Сбросить"
+                                        visible="false"/>
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" right="10.0"/>
+                    </padding>
+                </HBox>
+                <Text fx:id="notification" strokeType="OUTSIDE" strokeWidth="0.0" visible="false">
+                    <font>
+                        <Font name="Peterburg" size="12.0"/>
+                    </font>
+                </Text>
+            </items>
+        </ToolBar>
+    </top>
+    <center>
+        <TableView fx:id="bondsTable" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="ticketColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="150.0"
+                             text="Тикет"/>
+                <TableColumn fx:id="nameColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="150.0"
+                             text="Название"/>
+                <TableColumn fx:id="quantityColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="150.0"
+                             text="Рыночная цена"/>
+                <TableColumn fx:id="parValueColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="150.0"
+                             text="Номинал"/>
+                <TableColumn fx:id="couponRateColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0"
+                             prefWidth="170.0" text="Доходность в год %"/>
+                <TableColumn fx:id="maturityDateColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0"
+                             prefWidth="150.0" text="Погашение"/>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

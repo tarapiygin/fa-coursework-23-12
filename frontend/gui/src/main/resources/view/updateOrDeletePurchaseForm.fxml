@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<VBox alignment="TOP_CENTER" minWidth="200.0" style="-fx-background-color: #ffffff;" stylesheets="@../styles/style.css"
+      BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.fa.gui.controllers.UpdateOrDeletePurchaseFormController">
+    <children>
+        <AnchorPane minHeight="20.0" minWidth="20.0" prefHeight="20.0" prefWidth="20.0">
+            <children>
+                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="177.0" onMouseClicked="#onCloseForm"
+                           pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../assets/reject.png"/>
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <Text fx:id="idText" strokeType="OUTSIDE" strokeWidth="0.0" text="Изменение сделки №" textAlignment="CENTER"
+              wrappingWidth="171.85931396484375">
+            <font>
+                <Font name="Peterburg" size="18.0"/>
+            </font>
+            <VBox.margin>
+                <Insets bottom="30.0"/>
+            </VBox.margin>
+        </Text>
+        <TextField fx:id="ticketField" promptText="Тикет" styleClass="baseField">
+            <VBox.margin>
+                <Insets bottom="15.0"/>
+            </VBox.margin>
+        </TextField>
+        <TextField fx:id="priceField" promptText="Цена" styleClass="baseField">
+            <VBox.margin>
+                <Insets bottom="15.0"/>
+            </VBox.margin>
+        </TextField>
+        <TextField fx:id="quantityField" promptText="Количесто" styleClass="baseField">
+            <VBox.margin>
+                <Insets bottom="25.0"/>
+            </VBox.margin>
+        </TextField>
+        <DatePicker fx:id="creationDateTimeField" promptText="Дата сделки">
+            <VBox.margin>
+                <Insets bottom="30.0"/>
+            </VBox.margin>
+        </DatePicker>
+        <Text fx:id="notificationElement" strokeType="OUTSIDE" strokeWidth="0.0" visible="false">
+            <VBox.margin>
+                <Insets bottom="30.0"/>
+            </VBox.margin>
+            <font>
+                <Font name="Peterburg" size="12.0"/>
+            </font>
+        </Text>
+        <HBox alignment="TOP_CENTER" prefWidth="200.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#onUpdatePurchase" styleClass="baseGreenButton"
+                        text="Сохранить" textAlignment="CENTER"/>
+                <Button mnemonicParsing="false" onAction="#onDeletePurchase" styleClass="baseRedBorderButton"
+                        text="Удалить" textAlignment="CENTER">
+                    <HBox.margin>
+                        <Insets left="20.0"/>
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
+    </children>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+</VBox>

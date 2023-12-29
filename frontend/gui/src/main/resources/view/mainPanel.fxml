@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="640.0" prefWidth="1350.0" styleClass="MainPanelLeftMenu" stylesheets="@../styles/style.css"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.fa.gui.controllers.MainPanelController">
+    <left>
+        <VBox alignment="TOP_CENTER" prefHeight="601.0" prefWidth="160.0" styleClass="MainPanelLeftMenu"
+              BorderPane.alignment="CENTER">
+            <children>
+                <AnchorPane prefHeight="59.0" prefWidth="85.0" styleClass="MainPanelLeftMenu_Element">
+                    <children>
+                        <ImageView fitHeight="56.0" fitWidth="63.0" layoutX="51.0" layoutY="2.0"
+                                   onMouseClicked="#loadUserProfileView" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../assets/profile.png"/>
+                            </image>
+                        </ImageView>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="40.0"/>
+                    </VBox.margin>
+                </AnchorPane>
+                <Button fx:id="portfolioTableView" mnemonicParsing="false" onAction="#loadPortfolioTableView"
+                        prefHeight="30.0" prefWidth="172.0" stylesheets="@../styles/style.css" text="Портфель"
+                        textAlignment="JUSTIFY">
+                    <font>
+                        <Font name="Peterburg" size="17.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <VBox.margin>
+                        <Insets bottom="15.0"/>
+                    </VBox.margin>
+                    <styleClass>
+                        <String fx:value="MainPanelLeftMenu__Button"/>
+                        <String fx:value="MainPanelLeftMenu_Element"/>
+                    </styleClass>
+                </Button>
+                <Button fx:id="purchaseTableView" mnemonicParsing="false" onAction="#loadPurchasesTableView"
+                        prefHeight="30.0" prefWidth="173.0" stylesheets="@../styles/style.css" text="Журнал сделок"
+                        textAlignment="JUSTIFY" wrapText="true">
+                    <font>
+                        <Font name="Peterburg" size="17.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <VBox.margin>
+                        <Insets bottom="15.0"/>
+                    </VBox.margin>
+                    <styleClass>
+                        <String fx:value="MainPanelLeftMenu__Button"/>
+                        <String fx:value="MainPanelLeftMenu_Element"/>
+                    </styleClass>
+                </Button>
+                <Button fx:id="bondsTableView" layoutX="10.0" layoutY="172.0" mnemonicParsing="false"
+                        onAction="#loadBondsTableView" prefHeight="30.0" prefWidth="173.0"
+                        stylesheets="@../styles/style.css" text="Все облигации" textAlignment="JUSTIFY" wrapText="true">
+                    <font>
+                        <Font name="Peterburg" size="17.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <styleClass>
+                        <String fx:value="MainPanelLeftMenu__Button"/>
+                        <String fx:value="MainPanelLeftMenu_Element"/>
+                    </styleClass>
+                    <VBox.margin>
+                        <Insets bottom="15.0"/>
+                    </VBox.margin>
+                </Button>
+                <Button fx:id="authorView" mnemonicParsing="false" onAction="#loadAuthorView" prefHeight="30.0"
+                        prefWidth="173.0" stylesheets="@../styles/style.css" text="Об авторе" textAlignment="JUSTIFY"
+                        wrapText="true">
+                    <font>
+                        <Font name="Peterburg" size="17.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <styleClass>
+                        <String fx:value="MainPanelLeftMenu__Button"/>
+                        <String fx:value="MainPanelLeftMenu_Element"/>
+                    </styleClass>
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </Button>
+                <VBox alignment="BOTTOM_CENTER" prefHeight="250.0" prefWidth="159.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#onExitUser" prefHeight="30.0" prefWidth="173.0"
+                                stylesheets="@../styles/style.css" text="Выход" textAlignment="JUSTIFY" wrapText="true">
+                            <font>
+                                <Font name="Peterburg" size="17.0"/>
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                            <styleClass>
+                                <String fx:value="MainPanelLeftMenu__Button"/>
+                                <String fx:value="MainPanelLeftMenu_Element"/>
+                            </styleClass>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox prefHeight="108.0" prefWidth="1190.0"/>
+                <HBox prefHeight="244.0" prefWidth="1190.0"/>
+                <HBox prefHeight="254.0" prefWidth="1190.0"/>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

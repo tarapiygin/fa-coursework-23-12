@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+            stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.fa.gui.controllers.PortfolioController">
+    <top>
+        <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <items>
+                <HBox alignment="TOP_CENTER">
+                    <children>
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onCalculateBasicYTM"
+                                styleClass="baseDarkBorderButton" text="YTM портфеля - базовый метод"
+                                textAlignment="CENTER">
+                            <HBox.margin>
+                                <Insets right="50.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onCalculateNewtonYTM"
+                                styleClass="baseDarkBorderButton" text="YTM портфеля - метод Ньютона-Рафсона"
+                                textAlignment="CENTER"/>
+                    </children>
+                </HBox>
+            </items>
+        </ToolBar>
+    </top>
+    <center>
+        <TableView fx:id="bondsTable" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="ticketColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="150.0"
+                             text="Тикет"/>
+                <TableColumn fx:id="nameColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="150.0"
+                             text="Название"/>
+                <TableColumn fx:id="quantityColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="150.0"
+                             text="Количество"/>
+                <TableColumn fx:id="averageCostColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0"
+                             prefWidth="150.0" text="Цена покупки"/>
+                <TableColumn fx:id="parValueColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="150.0"
+                             text="Номинал"/>
+                <TableColumn fx:id="couponRateColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0"
+                             prefWidth="170.0" text="Доходность от номинала %"/>
+                <TableColumn fx:id="maturityDateColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0"
+                             prefWidth="150.0" text="Дата погашения"/>
+                <TableColumn fx:id="paymentsPerYearColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0"
+                             prefWidth="150.0" text="Платежей в год"/>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

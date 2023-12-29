@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import java.lang.String?>
+<VBox alignment="CENTER" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fa.gui.controllers.UserProfileController">
+    <children>
+        <VBox alignment="CENTER" maxWidth="250.0" minWidth="200.0">
+            <children>
+                <Text fill="#404040" strokeType="OUTSIDE" strokeWidth="0.0" text="Сменить пароль"
+                      textAlignment="CENTER">
+                    <font>
+                        <Font name="Peterburg" size="27.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="30.0"/>
+                    </VBox.margin>
+                </Text>
+                <Label alignment="TOP_LEFT" contentDisplay="RIGHT" minWidth="200.0" text="Username:">
+                    <graphic>
+                        <TextField fx:id="usernameField" editable="false" styleClass="baseFieldWithLabel"/>
+                    </graphic>
+                    <VBox.margin>
+                        <Insets bottom="15.0"/>
+                    </VBox.margin>
+                    <styleClass>
+                        <String fx:value="baseLabel"/>
+                        <String fx:value="baseLabel__Disabled"/>
+                    </styleClass>
+                </Label>
+                <PasswordField fx:id="passwordField" minWidth="200.0" promptText="Текущий пароль"
+                               styleClass="baseField">
+                    <VBox.margin>
+                        <Insets bottom="15.0"/>
+                    </VBox.margin>
+                </PasswordField>
+                <PasswordField fx:id="newPasswordField" minWidth="200.0" promptText="Новый пароль"
+                               styleClass="baseField">
+                    <VBox.margin>
+                        <Insets bottom="25.0"/>
+                    </VBox.margin>
+                </PasswordField>
+                <Button minWidth="100.0" mnemonicParsing="false" onAction="#onClickSubmit"
+                        style="-fx-background-color: #404040; -fx-background-radius: 0px;" text="Изменить"
+                        textFill="WHITE">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <VBox.margin>
+                        <Insets bottom="25.0"/>
+                    </VBox.margin>
+                </Button>
+                <Text fx:id="errorText" fill="#404040" strokeWidth="0.0" textAlignment="CENTER">
+                    <cursor>
+                        <Cursor fx:constant="DEFAULT"/>
+                    </cursor>
+                    <VBox.margin>
+                        <Insets bottom="15.0"/>
+                    </VBox.margin>
+                </Text>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </VBox>
+    </children>
+</VBox>
