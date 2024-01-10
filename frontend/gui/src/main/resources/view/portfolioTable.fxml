@@ -11,15 +11,8 @@
             <items>
                 <HBox alignment="TOP_CENTER">
                     <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onCalculateBasicYTM"
-                                styleClass="baseDarkBorderButton" text="YTM портфеля - базовый метод"
-                                textAlignment="CENTER">
-                            <HBox.margin>
-                                <Insets right="50.0"/>
-                            </HBox.margin>
-                        </Button>
                         <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onCalculateNewtonYTM"
-                                styleClass="baseDarkBorderButton" text="YTM портфеля - метод Ньютона-Рафсона"
+                                styleClass="baseDarkBorderButton" text="YTM портфеля"
                                 textAlignment="CENTER"/>
                     </children>
                 </HBox>
