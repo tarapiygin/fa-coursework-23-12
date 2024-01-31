@@ -57,12 +57,13 @@ public class YTMCalculator {
         }
 
         LocalDate today = LocalDate.now();
-        long totalPeriods = ChronoUnit.YEARS.between(today, maturityDate); // Количество лет выплаты купонов по облигации до момента ее погашения
+        // Количество лет выплаты купонов по облигации до момента ее погашения
+        long totalPeriods = ChronoUnit.YEARS.between(today, maturityDate);
 
         double coupon = faceValue * couponRate; // Годовая купонная выплата
         double totalPayments = totalPeriods * paymentsPerYear; // Общее количество платежей
         double periodicCoupon = coupon / paymentsPerYear; // Купонный платеж за период
-        double ytm = couponRate; // Начальное приближение YTM
+        double ytm = calculateApproximateYTM(marketPrice, faceValue, couponRate, totalPeriods, paymentsPerYear) / 2; // Начальное приближение YTM
         double ytmPrev; // Переменная для хранения предыдущего значения YTM
         double diff; // Переменная для хранения производной
         do {
@@ -74,20 +75,21 @@ public class YTMCalculator {
             // Рассчитываем текущую стоимость купонных платежей и их производных
             for (int i = 1; i <= totalPayments; i++) {
                 // Текущая стоимость i-го купонного платежа
-                f += periodicCoupon / Math.pow(1 + ytm, i)  ;
+                f += periodicCoupon / Math.pow(1 + ytm, i) *  Math.pow(1 + ytm, totalPayments - i)  ;
 
                 // Производная текущей стоимости i-го купонного платежа
-                df -= i * periodicCoupon / Math.pow(1 + ytm, 1 + i);
+                df -= periodicCoupon / Math.pow(1 + ytm, 1 + i) * (totalPayments - i) * Math.pow(1 + ytm, totalPayments - i);
             }
             // Добавляем текущую стоимость погашения номинала и ее производную
             f += faceValue / Math.pow(1 + ytm, totalPayments) - marketPrice;
-            df -= faceValue * totalPayments * Math.pow(1 + ytm, -1 - totalPayments);
+            df -= faceValue * totalPayments * Math.pow(1 + ytm, totalPayments + 1);
             // Обновляем YTM с использованием метода Ньютона-Рафсона
             ytm = ytm - f / df;
             // Вычисляем абсолютную разницу между текущим и предыдущим значением YTM
             diff = Math.abs(ytm - ytmPrev);
+            System.out.println(ytm);
         } while (diff > tolerance); // Повторяем, пока разница не станет меньше заданного порога
-        return ytm; // Преобразуем YTM в годовое значение
+        return ytm * paymentsPerYear * 100; // Преобразуем YTM в годовое значение
     }
 
     /**
@@ -99,21 +101,22 @@ public class YTMCalculator {
      * </p>
      *
      * @param marketPrice     Текущая рыночная цена облигации.
-     * @param parValue        Номинальная стоимость облигации.
+     * @param faceValue        Номинальная стоимость облигации.
      * @param couponRate      Годовая купонная ставка облигации (в десятичной форме).
      * @param yearsToMaturity Количество лет до погашения облигации.
      * @param paymentsPerYear Количество выплат купонов в год
      * @return Приблизительное значение YTM в десятичной форме.
      */
-    public static double calculateApproximateYTM(double marketPrice, double parValue, double couponRate, double yearsToMaturity, int paymentsPerYear) {
+    public static double calculateApproximateYTM(double marketPrice, double faceValue, double couponRate, double yearsToMaturity, int paymentsPerYear) {
         double totalPayments = Math.ceil(yearsToMaturity * paymentsPerYear); // Общее количество платежей
-        double periodicCoupon = (parValue * couponRate) / paymentsPerYear; // Купонный платеж за период
-        double averagePrice = (parValue + marketPrice) / 2;
+        double periodicCoupon = (faceValue * couponRate) / paymentsPerYear; // Купонный платеж за период
+        double averagePrice = (faceValue + marketPrice) / 2;
 
         // Рассчитываем приблизительную YTM для каждого периода
-        double ytmPerPeriod = (periodicCoupon + (parValue - marketPrice) / totalPayments) / averagePrice;
+        double ytmPerPeriod = (periodicCoupon + (faceValue - marketPrice) / totalPayments) / averagePrice;
 
         // Преобразуем периодическую YTM в годовую
         return ytmPerPeriod * paymentsPerYear;
     }
+
 }
