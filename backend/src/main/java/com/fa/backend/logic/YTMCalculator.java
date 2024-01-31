@@ -1,5 +1,10 @@
 package com.fa.backend.logic;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+
 /**
  * Класс для расчета доходности к погашению (YTM) облигаций.
  * <p>
@@ -37,7 +42,7 @@ public class YTMCalculator {
      * @param faceValue       Номинальная (лицевая) стоимость облигации.
      * @param couponRate      Годовая купонная ставка облигации. Это процент от номинальной
      *                        стоимости, который выплачивается владельцу облигации ежегодно.
-     * @param yearsToMaturity Количество лет до погашения облигации.
+     * @param maturityDate    Дата погашения облигации
      * @param tolerance       Порог точности расчетов, выражается как десятичная дробь.
      * @param paymentsPerYear Количество выплат купонов в год
      * @return Рассчитанное значение YTM для облигации. YTM выражается как десятичная дробь.
@@ -45,15 +50,19 @@ public class YTMCalculator {
      *                                  Например, если marketPrice, faceValue или couponRate
      *                                  отрицательны, или если yearsToMaturity не является положительным.
      */
-    public static double calculateNewtonRaphson(double marketPrice, double faceValue, double couponRate, double yearsToMaturity, double tolerance, int paymentsPerYear) {
+    public static double calculateNewtonRaphson(double marketPrice, double faceValue, double couponRate, LocalDate maturityDate, double tolerance, int paymentsPerYear) {
         // Проверка входных параметров на допустимость
-        if (marketPrice < 0 || faceValue < 0 || couponRate < 0 || yearsToMaturity <= 0 || paymentsPerYear <= 0) {
+        if (marketPrice < 0 || faceValue < 0 || couponRate < 0 || paymentsPerYear <= 0) {
             throw new IllegalArgumentException("Недопустимые значения входных параметров");
         }
+
+        LocalDate today = LocalDate.now();
+        long totalPeriods = ChronoUnit.YEARS.between(today, maturityDate); // Количество лет выплаты купонов по облигации до момента ее погашения
+
         double coupon = faceValue * couponRate; // Годовая купонная выплата
-        double totalPayments = Math.ceil(yearsToMaturity * paymentsPerYear); // Общее количество платежей
+        double totalPayments = totalPeriods * paymentsPerYear; // Общее количество платежей
         double periodicCoupon = coupon / paymentsPerYear; // Купонный платеж за период
-        double ytm = couponRate / paymentsPerYear; // Начальное приближение YTM
+        double ytm = couponRate; // Начальное приближение YTM
         double ytmPrev; // Переменная для хранения предыдущего значения YTM
         double diff; // Переменная для хранения производной
         do {
@@ -64,18 +73,21 @@ public class YTMCalculator {
             double df = 0;
             // Рассчитываем текущую стоимость купонных платежей и их производных
             for (int i = 1; i <= totalPayments; i++) {
-                f += periodicCoupon / Math.pow(1 + ytm, i); // Текущая стоимость i-го купонного платежа
-                df -= i * periodicCoupon / Math.pow(1 + ytm, i + 1); // Производная текущей стоимости i-го купонного платежа
+                // Текущая стоимость i-го купонного платежа
+                f += periodicCoupon / Math.pow(1 + ytm, i)  ;
+
+                // Производная текущей стоимости i-го купонного платежа
+                df -= i * periodicCoupon / Math.pow(1 + ytm, 1 + i);
             }
             // Добавляем текущую стоимость погашения номинала и ее производную
             f += faceValue / Math.pow(1 + ytm, totalPayments) - marketPrice;
-            df -= totalPayments * faceValue / Math.pow(1 + ytm, totalPayments + 1);
+            df -= faceValue * totalPayments * Math.pow(1 + ytm, -1 - totalPayments);
             // Обновляем YTM с использованием метода Ньютона-Рафсона
             ytm = ytm - f / df;
             // Вычисляем абсолютную разницу между текущим и предыдущим значением YTM
             diff = Math.abs(ytm - ytmPrev);
         } while (diff > tolerance); // Повторяем, пока разница не станет меньше заданного порога
-        return ytm * paymentsPerYear; // Преобразуем YTM в годовое значение
+        return ytm; // Преобразуем YTM в годовое значение
     }
 
     /**
