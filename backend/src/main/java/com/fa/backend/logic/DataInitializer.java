@@ -31,7 +31,8 @@ public class DataInitializer {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
                 bonds = Arrays.asList(
-                        new Bond("SU29014RMFS6", 991.25, "ОФЗ 29014", 1000.0, 9.3635, 2, sdf.parse("2026-03-25")),
+                        new Bond("TEST1", 1000.0, "ОФЗ 29014", 1000.0, 8.0, 2, sdf.parse("2025-02-02")),
+                        new Bond("TEST2", 1000.0, "ОФЗ 29014", 1000.0, 10.0, 2, sdf.parse("2025-02-02")),
                         new Bond("SU26230RMFS1", 724.3, "ОФЗ 26230", 1000.0, 11.9056, 2, sdf.parse("2039-03-16")),
                         new Bond("SU26243RMFS4", 879.2, "ОФЗ 26243", 1000.0, 11.8923, 2, sdf.parse("2038-05-19")),
                         new Bond("SU29025RMFS2", 983.7, "ОФЗ 29025", 1000.0, 8.8048, 2, sdf.parse("2037-08-12")),
