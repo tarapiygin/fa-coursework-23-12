@@ -91,28 +91,19 @@ public class Utils {
 
             double parValue = bond.getParValue();
             double couponRate = bond.getCouponRate();
-            double yearsToMaturity = calculateYearsToMaturity(bond.getMaturityDate()); // Количество лет до погашения
+
+            LocalDate maturityDate = bond.getMaturityDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
             double ytm;
 
-            if (Objects.equals(method, "NEWTON")) {
-                ytm = YTMCalculator.calculateNewtonRaphson(
-                        averageCost,
-                        parValue,
-                        couponRate,
-                        yearsToMaturity,
-                        tolerance,
-                        bond.getPaymentsPerYear()
-                );
-            } else {
-                ytm = YTMCalculator.calculateApproximateYTM(
-                        averageCost,
-                        parValue,
-                        couponRate,
-                        yearsToMaturity,
-                        bond.getPaymentsPerYear()
-                );
-            }
+            ytm = YTMCalculator.calculateNewtonRaphson(
+                    averageCost,
+                    parValue,
+                    couponRate / 100,
+                    maturityDate,
+                    tolerance,
+                    bond.getPaymentsPerYear()
+            );
 
             double totalBondValue = bondPurchases.stream()
                     .mapToDouble(purchase -> purchase.getBond().getMarketPrice() * purchase.getQuantity())
